@@ -1,0 +1,19 @@
+{
+    "posts" : [
+        {
+            "id": 1,
+            "content": "Hello from react redux toolkit",
+            "author": "dev",
+            "reactions": [
+                {
+                    "like": 1,
+                    "love": 0,
+                    "smile": 0,
+                    "idea" : 0,
+                    "think": 4
+                }
+            ]
+
+        }
+    ]
+}
