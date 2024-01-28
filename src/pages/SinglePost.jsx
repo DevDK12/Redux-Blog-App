@@ -1,6 +1,7 @@
 import {useSelector} from 'react-redux';
 import {Link, useParams} from 'react-router-dom'
 import Card from '../components/ui/Card';
+import PostAuthor from '../components/PostAuthor';
 
 
 
@@ -25,9 +26,7 @@ const SinglePost = () => {
             <div className='font-bold'>
                 {post.title}
             </div>
-            <div className='text-gray-600 mt-2'>
-                By {post.author} about 4 hrs ago
-            </div>
+            <PostAuthor userId={post.author} />
             <div className='mt-8'>
                 {post.content}
             </div>
