@@ -3,6 +3,7 @@ import {Link, useParams} from 'react-router-dom'
 import Card from '../components/ui/Card';
 import PostAuthor from '../components/PostAuthor';
 import PostDate from '../components/PostDate';
+import ReactionButton from '../components/ReactionButton';
 
 
 
@@ -23,7 +24,7 @@ const SinglePost = () => {
     }
 
     return (
-        <Card className='text-black '>
+        <Card className='text-black bg-gray-50'>
             <div className='font-bold'>
                 {post.title}
             </div>
@@ -32,6 +33,9 @@ const SinglePost = () => {
             <div className='mt-8'>
                 {post.content}
             </div>
+
+            <ReactionButton postId={post.id}  />
+
             <div className='py-2 mt-4'>
                 <Link to={`/edit/${post.id}`} className='bg-cyan-400 text-cyan-50 px-4 py-1 rounded-lg' >Edit</Link>
             </div>

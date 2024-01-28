@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import Card from './ui/Card'
 import PostAuthor from './PostAuthor';
 import PostDate from './PostDate';
+import ReactionButton from './ReactionButton';
 
 
 
@@ -30,6 +31,9 @@ const List = () => {
                     <div className='mt-4'>
                         {post.content.substring(0, 100)}...
                     </div>
+
+                    <ReactionButton postId={post.id} />
+                    
                     <div className='py-2 mt-6'>
                         <Link to={`/posts/${post.id}`} className='bg-cyan-400 px-3 py-2 rounded-lg text-cyan-50'>View Post</Link>
                     </div>
