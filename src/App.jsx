@@ -5,6 +5,7 @@ import Main from './pages/Main'
 import SinglePost from './pages/SinglePost'
 import List from './components/List';
 import Form from './components/Form';
+import EditPost from './pages/EditPost';
 
 
 const App = () => {
@@ -16,6 +17,7 @@ const App = () => {
         <Route path='/add' element={<Form />} />
         <Route path='/posts' element={<List />} />
         <Route path='/posts/:postId' element={<SinglePost />} />
+        <Route path='/edit/:postId' element={<EditPost />} />
       </Route>
     </Routes>
   )

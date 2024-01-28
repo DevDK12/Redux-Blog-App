@@ -1,5 +1,5 @@
 import {useSelector} from 'react-redux';
-import {useParams} from 'react-router-dom'
+import {Link, useParams} from 'react-router-dom'
 import Card from '../components/ui/Card';
 
 
@@ -21,7 +21,7 @@ const SinglePost = () => {
     }
 
     return (
-        <Card className='text-black h-[200px]'>
+        <Card className='text-black '>
             <div className='font-bold'>
                 {post.title}
             </div>
@@ -30,6 +30,9 @@ const SinglePost = () => {
             </div>
             <div className='mt-8'>
                 {post.content}
+            </div>
+            <div className='py-2 mt-4'>
+                <Link to={`/edit/${post.id}`} className='bg-cyan-400 text-cyan-50 px-4 py-1 rounded-lg' >Edit</Link>
             </div>
         </Card>
     )

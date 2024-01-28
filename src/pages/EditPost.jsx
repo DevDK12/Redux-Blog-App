@@ -1,24 +1,30 @@
-import {useNavigate} from 'react-router-dom';
+import {useParams, useNavigate} from 'react-router-dom';
 import { useState } from "react";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+
+import Card from "../components/ui/Card";
+
+
+import { updatePost } from "../store/posts-slice";
 
 
 
-import Card from "./ui/Card";
 
 
-import { addPost } from "../store/posts-slice";
 
 
-const Form = () => {
+const EditPost = () => {
+
+    const {postId} = useParams();
     const navigate = useNavigate();
 
+    
     const dispatch = useDispatch();
+    const post = useSelector(state => state.posts.find(post => post.id === postId));
 
 
-    const [title, setTitle] = useState("");
-    const [content, setContent] = useState(""); 
-
+    const [title, setTitle] = useState(post.title);
+    const [content, setContent] = useState(post.content); 
 
 
 
@@ -29,14 +35,15 @@ const Form = () => {
 
         const author = "Dev";
 
-        dispatch(addPost({
+        dispatch(updatePost({
+            id: postId,
             title,
             content,
             author
+        
         }));
         
-        navigate(`/posts`);
-
+        navigate(`/posts/${postId}`);
         setTitle("")
         setContent("")
     }
@@ -67,4 +74,4 @@ const Form = () => {
 
     )
 }
-export default Form
+export default EditPost

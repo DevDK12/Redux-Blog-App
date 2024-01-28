@@ -26,7 +26,7 @@ const List = () => {
                         By {post.author} about 4 hrs ago
                     </div>
                     <div>
-                        {post.content}
+                        {post.content.substring(0, 100)}...
                     </div>
                     <div className='py-2'>
                         <Link to={`/posts/${post.id}`} className='bg-cyan-400 px-3 py-2 rounded-lg text-cyan-50'>View Post</Link>
