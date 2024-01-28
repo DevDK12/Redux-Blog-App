@@ -1,4 +1,4 @@
-import {createSlice, nanoid, createAsyncThunk} from '@reduxjs/toolkit';
+import {createSlice,  createAsyncThunk} from '@reduxjs/toolkit';
 
 import client from '../api/client';
 
@@ -19,6 +19,20 @@ export const fetchPosts = createAsyncThunk('posts/fetchPosts', async () => {
 
     return response.data
 
+});
+
+
+
+
+
+export const addNewPost = createAsyncThunk('posts/addNewPost', async (post) => {
+
+    //_ It receives 'id' && 'date' already in post object
+    //* Usually server generates id && date and returns it in response
+
+    const response = await client.post('http://localhost:3000/posts', post);
+
+    return response.data;
 })
 
 
@@ -29,22 +43,22 @@ const postSlice = createSlice({
     name: 'posts',
     initialState,
     reducers: { 
-        addPost : {
-            reducer(state, action) {
-                state.items.push(action.payload);
-            },
-            prepare({title, content, author}) {
-                return {
-                    payload: {
-                        id: nanoid(),
-                        date: new Date().toISOString(),
-                        title,
-                        content,
-                        author,
-                    }
-                }
-            }
-        },
+        // addPost : {
+        //     reducer(state, action) {
+        //         state.items.push(action.payload);
+        //     },
+        //     prepare({title, content, author}) {
+        //         return {
+        //             payload: {
+        //                 id: nanoid(),
+        //                 date: new Date().toISOString(),
+        //                 title,
+        //                 content,
+        //                 author,
+        //             }
+        //         }
+        //     }
+        // },
         updatePost(state, action) {
             const {id , title, content} = action.payload;
             const post = state.items.find(post => post.id === id);
@@ -74,6 +88,9 @@ const postSlice = createSlice({
             state.status = 'failed';
             state.error = action.error.message;
         })
+        .addCase(addNewPost.fulfilled, (state, action) => {
+            state.items.push(action.payload);
+        })
 
     }
 );
@@ -82,7 +99,8 @@ const postSlice = createSlice({
 
 
 
-export const {addPost, updatePost , addReactions}  = postSlice.actions;
+// export const {addPost, updatePost , addReactions}  = postSlice.actions;
+export const { updatePost , addReactions}  = postSlice.actions;
 
 
 export default postSlice.reducer;

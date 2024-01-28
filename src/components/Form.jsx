@@ -1,18 +1,27 @@
 import {useNavigate} from 'react-router-dom';
 import { useState } from "react";
 import {useDispatch, useSelector} from "react-redux";
-
+import {nanoid} from "@reduxjs/toolkit";
 
 
 import Card from "./ui/Card";
 
 
-import { addPost } from "../store/posts-slice";
+import { addNewPost } from "../store/posts-slice";
 
 
 
 
 
+
+        
+const reactions = {
+    like : 0,
+    love : 0,
+    smile : 0,
+    idea : 0,
+    think : 0
+}
 
 
 
@@ -30,22 +39,52 @@ const Form = () => {
 
 
 
-    const submitHandler = (e) => {
+
+    const [addReqStatus, setAddReqStatus] = useState('idle');
+
+
+    const submitHandler = async (e) => {
         e.preventDefault()
 
-        if(title === "" || content === "" || userId === "" ) return;
+        
+        if(title === "" || content === "" || userId === "" || addReqStatus !== "idle" ) return;
 
-        console.log(userId);
-        dispatch(addPost({
-            title,
-            content,
-            author: userId,
-        }));
+
+        const id = nanoid();
+        const date = new Date().toISOString();
+        const author = userId;
+
+        try{
+            setAddReqStatus('pending');
+
+            //_ unwrap() 
+            //* 'createAsyncThunk' handles error internally and  provides unwrap() method 
+            //* unwrap() : returns a promise that either resolves with the fulfilled action payload 
+            //* or rejects with the rejected action payload or an error object.
+
+            await dispatch(addNewPost({id,title,content,author,date,reactions})).unwrap();
+
+            setTitle("")
+            setContent("")
+            setUserId("")
+        }
+        catch(err){
+            console.log('Failed to save the post : ', err);
+        }
+        finally{
+            setAddReqStatus('idle');
+        }
         
         navigate(`/posts`);
 
-        setTitle("")
-        setContent("")
+
+    }
+
+
+
+    let buttonLabel = 'Submit';    
+    if(addReqStatus === 'pending'){
+        buttonLabel = 'Adding...';
     }
 
 
@@ -78,7 +117,7 @@ const Form = () => {
                             <option key={user.id} value={user.id}>{user.name}</option>
                         ))}
                     </select>
-                    <button className="bg-cyan-500 text-white rounded-md w-1/2 mx-auto">Submit</button>
+                    <button className="bg-cyan-500 text-white rounded-md w-1/2 mx-auto">{buttonLabel}</button>
                 </form>
             </Card>
 

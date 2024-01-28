@@ -9,9 +9,10 @@ const client = async (endpoint, { body, ...customConfig } = {})  => {
     
     const headers = { 'Content-Type': 'application/json' }
 
-    if (body) {
-        body = JSON.stringify(body)
-    }
+    //* This does not works for some reason
+    // if (body) {
+    //     body = JSON.stringify(body)
+    // }
     
     const config = {
         method: body ? 'POST' : 'GET',
@@ -23,20 +24,26 @@ const client = async (endpoint, { body, ...customConfig } = {})  => {
     }
 
 
+    //* We need to use here only
+    if (body) {
+        config.body = JSON.stringify(body)
+    }
+
+
     let data
     try {
 
-        //_ Adds 2 sec delay with 50% chance of failure for testing purposes
-        await new Promise((resolve, reject) => {
-            setTimeout(() => {
-                // Reject the promise with a 20% chance
-                if (Math.random() < 0.5) {
-                    reject(new Error('Failed for testing by 50%'));
-                } else {
-                    resolve();
-                }
-            }, 2000);
-        });
+        // //_ Adds 2 sec delay with 50% chance of failure for testing purposes
+        // await new Promise((resolve, reject) => {
+        //     setTimeout(() => {
+        //         // Reject the promise with a 40% chance
+        //         if (Math.random() < 0.6) {
+        //             reject(new Error('Failed for testing by 40%'));
+        //         } else {
+        //             resolve();
+        //         }
+        //     }, 2000);
+        // });
 
 
         const response = await fetch(endpoint, config)

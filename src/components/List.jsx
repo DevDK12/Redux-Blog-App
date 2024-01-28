@@ -23,7 +23,7 @@ const List = () => {
 
 
     const postStatus = useSelector(state => selectPostsStatus(state));
-    const error = useSelector(state => selectPostsError(state));;
+    const error = useSelector(state => selectPostsError(state));
 
     useEffect(()=>{
         if(postStatus === 'idle') {
