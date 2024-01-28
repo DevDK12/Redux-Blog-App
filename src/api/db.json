@@ -42,5 +42,21 @@
                 "think": 2
             }
         }
+    ],
+
+    
+    "users": [
+        { 
+            "id": "1", 
+            "name": "Dev Kumar"
+        },
+        { 
+            "id": "2", 
+            "name": "Dhruv Chaurasia"
+        },
+        { 
+            "id": "3", 
+            "name": "Kunal Gola"
+        }
     ]
 }

@@ -8,6 +8,14 @@ import {BrowserRouter} from 'react-router-dom';
 
 import {Provider} from 'react-redux';
 import store from './store/index';
+import { fetchUsers } from './store/users-slice.js';
+
+
+
+//_ Fetch users once only when application starts
+store.dispatch(fetchUsers());
+
+
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
