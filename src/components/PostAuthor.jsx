@@ -8,7 +8,7 @@ const PostAuthor = ({userId}) => {
 
     return (
         <div className='text-gray-400 mt-1'>
-            By {author ? author.name : 'Unknown author'} about 4 hrs ago
+            By {author ? author.name : 'Unknown author'} 
         </div>
     )
 }

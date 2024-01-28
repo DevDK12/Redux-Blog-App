@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 
 import Card from './ui/Card'
 import PostAuthor from './PostAuthor';
+import PostDate from './PostDate';
 
 
 
@@ -23,7 +24,8 @@ const List = () => {
                     <div className='font-bold'>
                         {post.title}
                     </div>
-                    <PostAuthor userId={post.author} />
+                    <PostAuthor userId={post.author} postId={post.id} />
+                    <PostDate postId={post.id} />
                     <div className='mt-4'>
                         {post.content.substring(0, 100)}...
                     </div>

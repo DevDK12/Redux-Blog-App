@@ -2,6 +2,7 @@ import {useSelector} from 'react-redux';
 import {Link, useParams} from 'react-router-dom'
 import Card from '../components/ui/Card';
 import PostAuthor from '../components/PostAuthor';
+import PostDate from '../components/PostDate';
 
 
 
@@ -26,7 +27,8 @@ const SinglePost = () => {
             <div className='font-bold'>
                 {post.title}
             </div>
-            <PostAuthor userId={post.author} />
+            <PostAuthor userId={post.author} postId={post.id} />
+            <PostDate postId={postId} />
             <div className='mt-8'>
                 {post.content}
             </div>
