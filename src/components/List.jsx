@@ -1,44 +1,60 @@
-import { useSelector } from 'react-redux'
-import { Link } from 'react-router-dom';
+import { useSelector  , useDispatch} from 'react-redux'
 
 
 import Card from './ui/Card'
-import PostAuthor from './PostAuthor';
-import PostDate from './PostDate';
-import ReactionButton from './ReactionButton';
+
+import { selectAllPosts, fetchPosts, selectPostsStatus, selectPostsError } from '../store/posts-slice';
+import { useEffect } from 'react';
+import PostExcerpt from './PostExcerpt';
+
+
+
+
+
 
 
 
 
 const List = () => {
+    const dispatch = useDispatch();
 
-    const posts = useSelector((state) => state.posts);
+
+    const posts = useSelector(selectAllPosts);
+
+
+    const postStatus = useSelector(state => selectPostsStatus(state));
+    const error = useSelector(state => selectPostsError(state));;
+
+    useEffect(()=>{
+        if(postStatus === 'idle') {
+            dispatch(fetchPosts());
+        }
+    },[postStatus, dispatch]);
+
+
+
+    if(postStatus === 'pending'){
+        return <div className='font-bold mx-auto'>Loading...</div>
+    }
+    else if(postStatus === 'succeeded' && posts.length  === 0){
+        return <div className='font-bold mx-auto' >No Posts</div>
+    }
+    else if(postStatus === 'failed') {
+        return  <div className='text-red-400 font-bold mx-auto'>{error}</div>
+    }
+
 
     const orderedPosts = posts.slice().sort((a, b) => new Date(b.date) - new Date(a.date))
     
     return (
         <Card className='flex flex-col gap-4' >
             {orderedPosts.map((post) => ( 
-                <div 
+                <PostExcerpt 
                     key={post.id}
-                    className="bg-gray-100 px-4 py-2 rounded-md text-black "
-                >
-                    <div className='font-bold'>
-                        {post.title}
-                    </div>
-                    <PostAuthor userId={post.author} postId={post.id} />
-                    <PostDate postId={post.id} />
-                    <div className='mt-4'>
-                        {post.content.substring(0, 100)}...
-                    </div>
-
-                    <ReactionButton postId={post.id} />
-                    
-                    <div className='py-2 mt-6'>
-                        <Link to={`/posts/${post.id}`} className='bg-cyan-400 px-3 py-2 rounded-lg text-cyan-50'>View Post</Link>
-                    </div>
-                </div>
-            ))}
+                    post={post}
+                />
+                ))
+            }
         </Card>
     )
 }

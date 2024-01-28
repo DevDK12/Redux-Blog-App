@@ -5,6 +5,7 @@ import PostAuthor from '../components/PostAuthor';
 import PostDate from '../components/PostDate';
 import ReactionButton from '../components/ReactionButton';
 
+import { selectPostById } from '../store/posts-slice';
 
 
 const SinglePost = () => {
@@ -13,7 +14,7 @@ const SinglePost = () => {
 
     const {postId} = location;
 
-    const post = useSelector(state => state.posts.find(post => post.id === postId));
+    const post = useSelector( state => selectPostById( state, postId ));
 
     if(!post){
         return (

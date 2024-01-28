@@ -8,7 +8,7 @@ import Card from "../components/ui/Card";
 import { updatePost } from "../store/posts-slice";
 
 
-
+import { selectPostById } from '../store/posts-slice';
 
 
 
@@ -20,7 +20,7 @@ const EditPost = () => {
 
     
     const dispatch = useDispatch();
-    const post = useSelector(state => state.posts.find(post => post.id === postId));
+    const post = useSelector(state => selectPostById(state, postId));
 
 
     const [title, setTitle] = useState(post.title);

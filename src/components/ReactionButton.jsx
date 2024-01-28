@@ -1,6 +1,6 @@
 import {useDispatch, useSelector } from "react-redux";
 
-import { addReactions } from "../store/posts-slice";
+import { addReactions , selectPostById } from "../store/posts-slice";
 
 
 
@@ -19,7 +19,7 @@ const reactionEmoji = {
 
 const ReactionButton = ({postId}) => {
 
-    const reactions = useSelector(state => state.posts.find(post => post.id === postId)).reactions;
+    const reactions = useSelector(state => selectPostById(state, postId)).reactions;
 
 
     const dispatch = useDispatch();
