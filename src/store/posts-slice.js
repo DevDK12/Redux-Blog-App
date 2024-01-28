@@ -3,7 +3,7 @@ import {createSlice} from '@reduxjs/toolkit';
 
 const initialState = [
     {
-        "id": 1,
+        "id": "1",
         "title": "redux toolkit",
         "content": "Hello from react redux toolkit",
         "author": "dev",

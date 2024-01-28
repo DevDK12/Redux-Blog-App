@@ -1,4 +1,6 @@
 import { useSelector } from 'react-redux'
+import { Link } from 'react-router-dom';
+
 
 import Card from './ui/Card'
 
@@ -27,7 +29,7 @@ const List = () => {
                         {post.content}
                     </div>
                     <div className='py-2'>
-                        <a href='#' className='bg-cyan-400 px-3 py-2 rounded-lg text-cyan-50'>View Post</a>
+                        <Link to={`/posts/${post.id}`} className='bg-cyan-400 px-3 py-2 rounded-lg text-cyan-50'>View Post</Link>
                     </div>
                 </div>
             ))}
