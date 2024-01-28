@@ -13,10 +13,11 @@ const List = () => {
 
     const posts = useSelector((state) => state.posts);
 
-
+    const orderedPosts = posts.slice().sort((a, b) => new Date(b.date) - new Date(a.date))
+    
     return (
         <Card className='flex flex-col gap-4' >
-            {posts.map((post) => ( 
+            {orderedPosts.map((post) => ( 
                 <div 
                     key={post.id}
                     className="bg-gray-100 px-4 py-2 rounded-md text-black "
