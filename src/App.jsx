@@ -1,13 +1,23 @@
-import Form from './components/Form'
-import List from './components/List'
+import {Route , Routes} from 'react-router-dom'
+
+import Layout from './components/Layout/Layout'
+import Main from './pages/Main'
+import SinglePost from './pages/SinglePost'
+import List from './components/List';
+import Form from './components/Form';
 
 
 const App = () => {
   return (
-    <div className='flex flex-col gap-8 items-center h-screen'>
-      <Form />
-      <List />
-    </div>
+
+    <Routes>
+      <Route element={<Layout />}>
+        <Route index element={<Main />} />
+        <Route path='/add' element={<Form />} />
+        <Route path='/posts' element={<List />} />
+        <Route path='/posts/:postId' element={<SinglePost />} />
+      </Route>
+    </Routes>
   )
 }
 export default App

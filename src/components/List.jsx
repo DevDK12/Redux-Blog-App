@@ -1,31 +1,37 @@
+import { useSelector } from 'react-redux'
+
+import Card from './ui/Card'
 
 
-const posts = [
-    { 
-        "id": "1", 
-        "title": "a title", 
-        "views": 100 
-    },
-    { 
-        "id": "2", 
-        "title": "another title", 
-        "views": 200 
-    },
-]
 
 
 const List = () => {
+
+    const posts = useSelector((state) => state.posts);
+
+
     return (
-        <div className="bg-gray-300 flex flex-col gap-4 w-1/3 px-8 py-4 rounded-lg">
+        <Card className='flex flex-col gap-4' >
             {posts.map((post) => ( 
                 <div 
                     key={post.id}
-                    className="bg-gray-100 px-4 py-2 rounded-md text-black font-bold"
+                    className="bg-gray-100 px-4 py-2 rounded-md text-black "
                 >
-                    {post.title} - {post.views}
+                    <div className='font-bold'>
+                        {post.title}
+                    </div>
+                    <div className='text-gray-400'>
+                        By {post.author} about 4 hrs ago
+                    </div>
+                    <div>
+                        {post.content}
+                    </div>
+                    <div className='py-2'>
+                        <a href='#' className='bg-cyan-400 px-3 py-2 rounded-lg text-cyan-50'>View Post</a>
+                    </div>
                 </div>
             ))}
-        </div>
+        </Card>
     )
 }
 export default List
