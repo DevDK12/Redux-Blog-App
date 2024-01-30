@@ -5,6 +5,21 @@ import client from '../api/client';
 
 
 
+// {
+//     "id": String,
+//     "title": String,,
+//     "content": String,,
+//     "author": String,
+//     "date": String,
+//     "reactions": {
+//         "like": Number,
+//         "love": Number,
+//         "smile": Number,
+//         "idea" :  Number,
+//         "think": Number,
+//     }
+// }
+
 const initialState = {
     items: [],
     status: 'idle',  //_ idle, pending, succeeded, failed

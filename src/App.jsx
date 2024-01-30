@@ -6,6 +6,8 @@ import SinglePost from './pages/SinglePost'
 import List from './components/List';
 import Form from './components/Form';
 import EditPost from './pages/EditPost';
+import Users from './pages/Users';
+import UserPage from './pages/UserPage';
 
 
 const App = () => {
@@ -18,6 +20,8 @@ const App = () => {
         <Route path='/posts' element={<List />} />
         <Route path='/posts/:postId' element={<SinglePost />} />
         <Route path='/edit/:postId' element={<EditPost />} />
+        <Route path='/users' element={<Users />} />
+        <Route path='/users/:userId' element={<UserPage />} />
       </Route>
     </Routes>
   )
