@@ -8,6 +8,7 @@ import Form from './components/Form';
 import EditPost from './pages/EditPost';
 import Users from './pages/Users';
 import UserPage from './pages/UserPage';
+import Notifications from './pages/Notifications';
 
 
 const App = () => {
@@ -22,6 +23,7 @@ const App = () => {
         <Route path='/edit/:postId' element={<EditPost />} />
         <Route path='/users' element={<Users />} />
         <Route path='/users/:userId' element={<UserPage />} />
+        <Route path='/notifications' element={<Notifications />} />
       </Route>
     </Routes>
   )

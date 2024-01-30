@@ -1,4 +1,5 @@
-{     "posts" : [
+{     
+    "posts" : [
         {
             "id": "1",
             "title": "redux toolkit",
@@ -57,5 +58,53 @@
             "id": "3", 
             "name": "Kunal Gola"
         }
+    ],
+
+
+    "notifications": [
+        {
+            "id": "11",
+            "user": "1",
+            "message": "is glad we are friends",
+            "date": "Tue Jan 30 2024 13:41:16 GMT+0530 (India Standard Time)",
+            "read": false
+        },
+        {
+            "id": "12",
+            "user": "1",
+            "message": "says hi!",
+            "date": "Tue Jan 30 2024 16:44:01 GMT+0530 (India Standard Time)",
+            "read": false
+        },
+        {
+            "id": "13",
+            "user": "2",
+            "message": "Invited you to a group",
+            "date": "Tue Jan 30 2024 14:25:49 GMT+0530 (India Standard Time)",
+            "read": false
+        },
+        {
+            "id": "14",
+            "user": "3",
+            "message": "wants to be friends",
+            "date": "Tue Jan 30 2024 17:53:38 GMT+0530 (India Standard Time)",
+            "read": false
+        },
+        {
+            "id": "15",
+            "user": "5",
+            "message": "Says hi",
+            "date": "Tue Jan 30 2024 13:23:14 GMT+0530 (India Standard Time)",
+            "read": false
+        },
+        {
+            "id": "16",
+            "user": "3",
+            "message": "like your comment",
+            "date": "Tue Jan 30 2024 14:00:26 GMT+0530 (India Standard Time)",
+            "read": false
+        }
     ]
+
+
 }
