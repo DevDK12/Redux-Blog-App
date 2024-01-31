@@ -8,7 +8,7 @@ import Card from "./ui/Card";
 
 
 import { addNewPost } from "../store/posts-slice";
-
+import { selectAllUsers } from '../store/users-slice';
 
 
 
@@ -29,7 +29,7 @@ const Form = () => {
     const navigate = useNavigate();
 
     const dispatch = useDispatch();
-    const users = useSelector(state => state.users);
+    const users = useSelector(selectAllUsers);
 
 
     const [title, setTitle] = useState("");

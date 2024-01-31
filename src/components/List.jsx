@@ -3,7 +3,7 @@ import { useSelector  , useDispatch} from 'react-redux'
 
 import Card from './ui/Card'
 
-import { selectAllPosts, fetchPosts, selectPostsStatus, selectPostsError } from '../store/posts-slice';
+import { selectPostIds, fetchPosts, selectPostsStatus, selectPostsError } from '../store/posts-slice';
 import { useEffect } from 'react';
 import PostExcerpt from './PostExcerpt';
 
@@ -19,7 +19,7 @@ const List = () => {
     const dispatch = useDispatch();
 
 
-    const posts = useSelector(selectAllPosts);
+    const orderedPostsIds = useSelector(selectPostIds);
 
 
     const postStatus = useSelector(state => selectPostsStatus(state));
@@ -36,7 +36,7 @@ const List = () => {
     if(postStatus === 'pending'){
         return <div className='font-bold mx-auto'>Loading...</div>
     }
-    else if(postStatus === 'succeeded' && posts.length  === 0){
+    else if(postStatus === 'succeeded' && orderedPostsIds.length  === 0){
         return <div className='font-bold mx-auto' >No Posts</div>
     }
     else if(postStatus === 'failed') {
@@ -44,14 +44,13 @@ const List = () => {
     }
 
 
-    const orderedPosts = posts.slice().sort((a, b) => new Date(b.date) - new Date(a.date))
     
     return (
         <Card className='flex flex-col gap-4' >
-            {orderedPosts.map((post) => ( 
+            {orderedPostsIds.map((postId) => ( 
                 <PostExcerpt 
-                    key={post.id}
-                    post={post}
+                    key={postId}
+                    postId={postId}
                 />
                 ))
             }

@@ -4,7 +4,7 @@ import {useSelector} from 'react-redux';
 
 
 import { selectUserById } from '../store/users-slice';
-import { selectAllPosts } from '../store/posts-slice';
+import { selectPostsByUser } from '../store/posts-slice';
 import PostExcerpt from '../components/PostExcerpt';
 import Card from '../components/ui/Card';
 
@@ -20,11 +20,15 @@ const UserPage = () => {
     //_ Initially posts[] will be empty as it only fetchesAllPosts from server when we visit '/posts'
     //* So it will display no posts 
 
-    const posts = useSelector(state => {
-        const allPosts = selectAllPosts(state);
-        const userPosts = allPosts.filter(post => post.author === userId);
-        return userPosts;
-    })
+
+    // const posts = useSelector(state => {
+    //     const allPosts = selectAllPosts(state);
+    //     const userPosts = allPosts.filter(post => post.author === userId);
+    //     return userPosts;
+    // })
+
+    //_ Memoized selector
+    const posts = useSelector(state => selectPostsByUser(state, userId));
 
 
 
@@ -49,7 +53,7 @@ const UserPage = () => {
                 {posts.map((post) => ( 
                     <PostExcerpt 
                         key={post.id}
-                        post={post}
+                        postId={post.id}
                     />
                     ))
                 }

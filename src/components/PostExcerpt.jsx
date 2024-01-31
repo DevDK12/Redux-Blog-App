@@ -1,6 +1,11 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable react/jsx-no-comment-textnodes */
 import { Link } from "react-router-dom"
+import {useSelector} from 'react-redux';
+
+import { selectPostById } from "../store/posts-slice";
+
+
 import PostAuthor from "./PostAuthor"
 import PostDate from "./PostDate"
 import ReactionButton from "./ReactionButton"
@@ -8,7 +13,10 @@ import ReactionButton from "./ReactionButton"
 
 
 
-const PostExcerpt = ({post}) => {
+const PostExcerpt = ({postId}) => {
+
+    const post = useSelector(state => selectPostById(state, postId));
+
     return (
         <div className="bg-gray-100 px-4 py-2 rounded-md text-black " >
             <div className='font-bold'>
