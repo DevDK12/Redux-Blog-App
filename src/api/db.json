@@ -1,19 +1,104 @@
 {
-    "posts" : [
-        {
-            "id": 1,
-            "content": "Hello from react redux toolkit",
-            "author": "dev",
-            "reactions": [
-                {
-                    "like": 1,
-                    "love": 0,
-                    "smile": 0,
-                    "idea" : 0,
-                    "think": 4
-                }
-            ]
-
-        }
-    ]
+  "posts": [
+    {
+      "id": "1",
+      "title": "redux toolkit",
+      "content": "Delving into the intricacies of Redux Toolkit, we find ourselves immersed in a world of streamlined state management, where the complexities of Redux are distilled into a set of user-friendly functions. This powerful library not only simplifies the process of writing Redux logic, but also promotes clean, maintainable code, and robust application architecture. By leveraging Redux Toolkit, we can efficiently handle the state of our application, leading to an enhanced development experience and a more reliable, performant end product.",
+      "author": "1",
+      "date": "Sun Feb 26 2023 01:19:20 GMT+0530 (India Standard Time)",
+      "reactions": {
+        "like": 0,
+        "love": 4,
+        "smile": 1,
+        "idea": 11,
+        "think": 2
+      }
+    },
+    {
+      "id": "2",
+      "title": "react hooks",
+      "content": "React Hooks revolutionized the way we write React components. With hooks like useState, useEffect, and useContext, we can now manage state, perform side effects, and access context in a more concise and intuitive way. Hooks allow us to write functional components that are easier to read, test, and maintain. By embracing the power of hooks, we can build scalable and reusable UI components in React.",
+      "author": "1",
+      "date": "Fri Jun 16 2023 05:43:37 GMT+0530 (India Standard Time)",
+      "reactions": {
+        "like": 0,
+        "love": 10,
+        "smile": 7,
+        "idea": 1,
+        "think": 9
+      }
+    },
+    {
+      "id": "3",
+      "title": "async/await",
+      "content": "Async/await is a powerful feature in JavaScript that allows us to write asynchronous code in a more synchronous manner. By using the async keyword, we can define functions that return Promises, and the await keyword allows us to pause the execution of a function until a Promise is resolved or rejected. This makes asynchronous code easier to read and write, especially when dealing with multiple asynchronous operations. With async/await, we can handle asynchronous tasks with less callback nesting and more readable code.",
+      "author": "3",
+      "date": "Fri Mar 03 2023 09:26:14 GMT+0530 (India Standard Time)",
+      "reactions": {
+        "like": 2,
+        "love": 3,
+        "smile": 1,
+        "idea": 5,
+        "think": 2
+      }
+    }
+  ],
+  "users": [
+    {
+      "id": "1",
+      "name": "Dev Kumar"
+    },
+    {
+      "id": "2",
+      "name": "Dhruv Chaurasia"
+    },
+    {
+      "id": "3",
+      "name": "Kunal Gola"
+    }
+  ],
+  "notifications": [
+    {
+      "id": "11",
+      "user": "1",
+      "message": "is glad we are friends",
+      "date": "Tue Jan 30 2024 13:41:16 GMT+0530 (India Standard Time)",
+      "read": false
+    },
+    {
+      "id": "12",
+      "user": "1",
+      "message": "says hi!",
+      "date": "Tue Jan 30 2024 16:44:01 GMT+0530 (India Standard Time)",
+      "read": false
+    },
+    {
+      "id": "13",
+      "user": "2",
+      "message": "Invited you to a group",
+      "date": "Tue Jan 30 2024 14:25:49 GMT+0530 (India Standard Time)",
+      "read": false
+    },
+    {
+      "id": "14",
+      "user": "3",
+      "message": "wants to be friends",
+      "date": "Tue Jan 30 2024 17:53:38 GMT+0530 (India Standard Time)",
+      "read": false
+    },
+    {
+      "id": "15",
+      "user": "5",
+      "message": "Says hi",
+      "date": "Tue Jan 30 2024 13:23:14 GMT+0530 (India Standard Time)",
+      "read": false
+    },
+    {
+      "id": "16",
+      "user": "3",
+      "message": "like your comment",
+      "date": "Tue Jan 30 2024 14:00:26 GMT+0530 (India Standard Time)",
+      "read": false
+    }
+  ]
 }

@@ -1,31 +1,60 @@
+import { useSelector  , useDispatch} from 'react-redux'
 
 
-const posts = [
-    { 
-        "id": "1", 
-        "title": "a title", 
-        "views": 100 
-    },
-    { 
-        "id": "2", 
-        "title": "another title", 
-        "views": 200 
-    },
-]
+import Card from './ui/Card'
+
+import { selectPostIds, fetchPosts, selectPostsStatus, selectPostsError } from '../store/posts-slice';
+import { useEffect } from 'react';
+import PostExcerpt from './PostExcerpt';
+
+
+
+
+
+
+
 
 
 const List = () => {
+    const dispatch = useDispatch();
+
+
+    const orderedPostsIds = useSelector(selectPostIds);
+
+
+    const postStatus = useSelector(state => selectPostsStatus(state));
+    const error = useSelector(state => selectPostsError(state));
+
+    useEffect(()=>{
+        if(postStatus === 'idle') {
+            dispatch(fetchPosts());
+        }
+    },[postStatus, dispatch]);
+
+
+
+    if(postStatus === 'pending'){
+        return <div className='font-bold mx-auto'>Loading...</div>
+    }
+    else if(postStatus === 'succeeded' && orderedPostsIds.length  === 0){
+        return <div className='font-bold mx-auto' >No Posts</div>
+    }
+    else if(postStatus === 'failed') {
+        return  <div className='text-red-400 font-bold mx-auto'>{error}</div>
+    }
+
+
+    
     return (
-        <div className="bg-gray-300 flex flex-col gap-4 w-1/3 px-8 py-4 rounded-lg">
-            {posts.map((post) => ( 
-                <div 
-                    key={post.id}
-                    className="bg-gray-100 px-4 py-2 rounded-md text-black font-bold"
-                >
-                    {post.title} - {post.views}
-                </div>
-            ))}
-        </div>
+        <Card className='flex flex-col gap-4' >
+            {orderedPostsIds.map((postId) => ( 
+                <PostExcerpt 
+                    key={postId}
+                    postId={postId}
+                />
+                ))
+            }
+        </Card>
     )
 }
 export default List
